@@ -5,9 +5,9 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2024.10-rc4
+PKG_VERSION:=2024.10
 PKG_RELEASE:=1
-PKG_HASH:=7547a5d5147b748094dc88c6d6f196519e97cca3eb66137a4acb92e9e63e0626
+PKG_HASH:=b28daf4ac17e43156363078bf510297584137f6df50fced9b12df34f61a92fb0
 
 PKG_MAINTAINER:=Sarah Maedel <openwrt@tbspace.de>
 
@@ -168,6 +168,13 @@ define U-Boot/rk3566/Default
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3566
   ATF:=$(RK3566_ATF)
   TPL:=$(RK3566_TPL)
+endef
+
+define U-Boot/nanopi-r3s-rk3566
+  $(U-Boot/rk3566/Default)
+  NAME:=NanoPi R3S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r3s
 endef
 
 define U-Boot/radxa-cm3-io-rk3566
@@ -386,6 +393,7 @@ UBOOT_TARGETS := \
   roc-cc-rk3328 \
   rock-pi-e-rk3328 \
   rock64-rk3328 \
+  nanopi-r3s-rk3566 \
   radxa-cm3-io-rk3566 \
   radxa-zero-3-rk3566 \
   rock-3c-rk3566 \
